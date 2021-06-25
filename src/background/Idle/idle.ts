@@ -1,4 +1,4 @@
-import Events from './types'
+import Events from '../types'
 
 export type IdleState = 'active' | 'idle'
 
@@ -24,12 +24,22 @@ export interface IdleAPI {
   onStateChanged: IdleStateOnStateChanged
 }
 
+export interface ChromeIdleAPI {
+  queryState(
+    detectionIntervalInSeconds: number,
+    callback: (newState: string) => void,
+  ): void
+  setDetectionInterval(intervalInSeconds: number): void
+
+  onStateChanged: chrome.idle.IdleStateChangedEvent
+}
+
 export class Idle implements IdleTypes {
-  private idle: IdleAPI
+  private idle: ChromeIdleAPI
   // Fired when the system changes to an active, idle or locked state. The event fires with "locked" if the screen is locked or the screensaver activates, "idle" if the system is unlocked and the user has not generated any input for a specified number of seconds, and "active" when the user generates input on an idle system.
   public onStateChanged: IdleStateOnStateChanged
 
-  constructor(idle: IdleAPI) {
+  constructor(idle: ChromeIdleAPI = chrome.idle) {
     this.idle = idle
     this.onStateChanged = {
       addListener(callback: IdleStateOnStateChangedFn): void {

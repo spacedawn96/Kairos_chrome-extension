@@ -1,5 +1,5 @@
-import {Tab} from './tabs'
-import Events from './types'
+import {Tab} from '../tabs'
+import Events from '../types'
 
 export type BrowserActionFn = (tab: Tab) => void
 
@@ -9,12 +9,16 @@ export interface BrowserActionTypes {
   onClicked: BrowserActionOnClicked
 }
 
+export interface ChromeBrowserActionAPI {
+  onClicked: chrome.browserAction.BrowserClickedEvent
+}
+
 // Manifest V2 only
-export class BrowserAction implements BrowserActionTypes {
-  private browserAction: BrowserActionTypes
+export class ChromeBrowserAction implements BrowserActionTypes {
+  private browserAction: ChromeBrowserActionAPI
   public onClicked: BrowserActionOnClicked
 
-  constructor(browserAction: BrowserActionTypes) {
+  constructor(browserAction: ChromeBrowserActionAPI = chrome.browserAction) {
     this.browserAction = browserAction
     this.onClicked = {
       addListener(callback: BrowserActionFn): void {

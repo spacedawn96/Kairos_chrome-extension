@@ -1,4 +1,4 @@
-import Events from './types'
+import Events from '../types'
 
 export interface Tab {
   active: boolean
@@ -87,13 +87,26 @@ export interface TabsAPI {
   onUpdated: TabOnUpdated
 }
 
+export interface ChromeTabsAPI {
+  get(tabId: number, callback: (tab: chrome.tabs.Tab) => void): void
+  update(
+    tabId: number,
+    updateProperties: chrome.tabs.UpdateProperties,
+    callback?: (tab?: chrome.tabs.Tab) => void,
+  ): void
+
+  onActivated: chrome.tabs.TabActivatedEvent
+  onRemoved: chrome.tabs.TabRemovedEvent
+  onUpdated: chrome.tabs.TabUpdatedEvent
+}
+
 export class Tabs implements TabsTypes {
-  private tabs: TabsAPI
+  private tabs: ChromeTabsAPI
   public onActivated: TabsOnActivated
   public onRemoved: TabsOnRemoved
   public onUpdated: TabOnUpdated
 
-  constructor(tabs: TabsAPI) {
+  constructor(tabs: ChromeTabsAPI = chrome.tabs) {
     this.tabs = tabs
     this.onActivated = {
       addListener(callback: TabsActivatedFn): void {

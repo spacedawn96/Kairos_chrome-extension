@@ -2,10 +2,14 @@ export interface ExtensionTypes {
   getURL(path: string): string
 }
 
-export class Extension implements ExtensionTypes {
-  private runtime: ExtensionTypes
+export interface ChromeExtensionAPI {
+  getURL(path: string): string
+}
 
-  constructor(runtime: ExtensionTypes) {
+export class Extension implements ExtensionTypes {
+  private runtime: ChromeExtensionAPI
+
+  constructor(runtime: ChromeExtensionAPI = chrome.extension) {
     this.runtime = runtime
   }
 
