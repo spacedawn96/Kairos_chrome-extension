@@ -1,4 +1,4 @@
-import {Tabs} from '../Tabs/tabs'
+import {Tab} from '../Tabs/tabs'
 import Events from '../types'
 
 export type BrowserWindowState =
@@ -18,23 +18,17 @@ export type BrowserWindowType =
 export interface BrowserWindow {
   id?: number
   focused: boolean
-  tabs?: Tabs[]
+  tabs?: Tab[]
   incognito: boolean
   type?: BrowserWindowType
   state?: BrowserWindowState
   title?: string
 }
 
-export interface BrowserWindowEvent<T extends Function> {
-  addListener(callback: T): void
-  hasListener(callback: T): boolean
-  removeListener(callback: T): void
-}
-
 export type BrowserWindowFocusChangedEventCallback = (windowId: number) => void
 
 export type BrowserWindowFocusChangedEvent =
-  BrowserWindowEvent<BrowserWindowFocusChangedEventCallback>
+  Events<BrowserWindowFocusChangedEventCallback>
 
 export interface WindowsService {
   WINDOW_ID_NONE: number
@@ -47,11 +41,7 @@ export interface WindowsService {
 export interface ChromeWindowsAPI {
   WINDOW_ID_NONE: number
 
-  get(
-    windowId: number,
-    getInfo: chrome.windows.GetInfo,
-    callback: (window: any) => void,
-  ): void
+  get(windowId: number, getInfo: any, callback: (window: any) => void): void
 
   onFocusChanged: chrome.windows.WindowIdEvent
 }

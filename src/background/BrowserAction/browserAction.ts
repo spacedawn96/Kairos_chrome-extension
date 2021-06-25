@@ -1,4 +1,4 @@
-import {Tab} from '../tabs'
+import {Tab} from '../Tabs/tabs'
 import Events from '../types'
 
 export type BrowserActionFn = (tab: Tab) => void

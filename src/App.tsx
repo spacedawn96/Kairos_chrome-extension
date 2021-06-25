@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import {jsx, css} from '@emotion/react'
+
+import Nav from './components/Nav'
+import * as React from 'react'
+import {Body, MainNav, RightBar, LeftBar} from './components/View/index'
+import RightSide from './components/RightSide'
+import LeftSide from './components/LeftSide'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <MainNav>
+        <Nav />
+      </MainNav>
+      <Body
+        leftNav={
+          <LeftBar>
+            <LeftSide />
+          </LeftBar>
+        }
+        rightNav={
+          <RightBar>
+            <RightSide />
+          </RightBar>
+        }
+      ></Body>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
