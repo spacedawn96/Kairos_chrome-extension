@@ -24,3 +24,20 @@ export interface DatabaseRecords {
   domain: DomainTableRecord[]
   title: TitleTableRecord[]
 }
+export interface ActivityService {
+  createActivityRecord(activity: RawActivity): Promise<void>
+  deleteActivityRecords(recordIds: number[]): Promise<void>
+  fetchAllActivityDomains(): Promise<Record<string, Domain>>
+  fetchAllActivityRecords(): Promise<Activity[]>
+  fetchActivityRecords(query: TimeRange): Promise<Activity[]>
+  fetchActivityTimeRange(): Promise<DefiniteTimeRange | null>
+}
+
+export interface DataMigrationService {
+  exportDatabaseRecords(): Promise<DatabaseRecords>
+  importDatabaseRecords(records: DatabaseRecords): Promise<void>
+}
+
+export interface DatabaseService
+  extends ActivityService,
+    DataMigrationService {}

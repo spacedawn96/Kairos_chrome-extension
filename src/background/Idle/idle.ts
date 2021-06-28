@@ -1,6 +1,6 @@
 import Events from '../types'
 
-export type IdleState = 'active' | 'idle'
+export type IdleState = 'active' | 'idle' | 'locked'
 
 export type IdleStateOnStateChangedFn = (newState: IdleState) => void
 

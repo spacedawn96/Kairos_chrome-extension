@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@blueprintjs/core": "^3.46.0",
     "@emotion/react": "^11.4.0",
     "@reduxjs/toolkit": "1.2.5",
     "@testing-library/jest-dom": "^5.11.4",
@@ -13,7 +12,10 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "d3": "^7.0.0",
     "dexie": "2.0.4",
+    "evergreen-ui": "^6.0.1",
+    "luxon": "^1.27.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
@@ -46,6 +48,8 @@
     ]
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.145"
+    "@types/chrome": "^0.0.145",
+    "@types/d3": "^7.0.0",
+    "@types/luxon": "^1.27.0"
   }
 }

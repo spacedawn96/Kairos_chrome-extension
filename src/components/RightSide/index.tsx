@@ -2,17 +2,6 @@
 /** @jsx jsx */
 import {jsx, css} from '@emotion/react'
 import * as React from 'react'
-import {
-  Alignment,
-  Button,
-  Classes,
-  H5,
-  Navbar,
-  NavbarDivider,
-  NavbarGroup,
-  NavbarHeading,
-  Switch,
-} from '@blueprintjs/core'
 
 export type RightSideProps = {}
 
